@@ -27,7 +27,7 @@ pipeline {
         }
         steps{
           sh"""
-          pip install --user -r requirement.txt
+          pip install --user -r requirements.txt
           pip install --user -r requirements-test-txt
           """
         }
