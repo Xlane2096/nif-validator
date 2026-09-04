@@ -49,5 +49,29 @@ pipeline {
           }
         }
       } 
+      stage('Coverage report'){
+        agent {
+          docker {
+            image 'python:3.11-slim'
+            reuseNode true
+          }
+        }
+        steps {
+          sh"""
+          python3 -m coverage run --source=. --omit=tests/* -m pytest tests
+          python3 -m coverage report -m
+          python3 -m coverage html
+          """
+        }
+        post {
+          always {
+            publishHTML(target: [
+              reportDIR: 'htmlcov'
+              reportFiles: 'index.html'
+              reportName: 'Coverage report'
+            ])
+          }
+        }
+      }
   }
 }
