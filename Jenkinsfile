@@ -90,7 +90,7 @@ pipeline {
           sshagent(credentials:['redhat']) {
             sh"""
             ssh -o StrictHostKeyChecking=no redhat@3.78.218.63 \
-            "docker rm -f nif-validator && docker run -d -p 8080:9046 dfonseca96/nif-validator"
+            "docker rm -f nif-validator && docker run -d -p 8080:9046 --name nif-validator dfonseca96/nif-validator"
             """
           }
         }
