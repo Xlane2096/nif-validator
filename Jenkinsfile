@@ -85,5 +85,14 @@ pipeline {
           } 
         }
       }
+      stage('Deployment') {
+        steps {
+          sshagent(credentialsId:['redhat']) {
+            sh"""
+            ssh -o StrictHostKeyChecking=no redhat@3.78.218.63 "docker run -d -p 8080:9046 dfonseca96/nif-validator"
+            """
+          }
+        }
+      }
   }
 }
