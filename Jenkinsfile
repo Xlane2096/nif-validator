@@ -14,7 +14,7 @@ pipeline {
 
   stages {
       stage('Setup') {
-          step{
+          steps{
               sh 'printenv'
           }
       }
@@ -25,7 +25,7 @@ pipeline {
             reuseNode true
           }
         }
-        step {
+        steps{
           sh"""
           pip install --user -r requirement.txt
           pip install --user -r requirements-test-txt
@@ -39,7 +39,7 @@ pipeline {
             reuseNode true
           }
         }
-        step {
+        steps{
           sh 'python3 -m pytest --junitxml results.xml tests/'
         }
         post {
