@@ -66,8 +66,8 @@ pipeline {
         post {
           always {
             publishHTML(target: [
-              reportDIR: 'htmlcov'
-              reportFiles: 'index.html'
+              reportDIR: 'htmlcov',
+              reportFiles: 'index.html',
               reportName: 'Coverage report'
             ])
           }
