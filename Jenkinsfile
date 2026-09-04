@@ -5,7 +5,9 @@
 |*/
 
 pipeline {
-  agent "linux"
+  agent {
+    label: "linux"
+    }
   environment {
       HOME = "${env.WORKSPACE}"
   }
